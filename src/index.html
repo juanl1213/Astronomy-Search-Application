@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Astronomy</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" /> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Angkor&family=Cairo:wght@500&family=Lato&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background">
+        <div><h1>Astronomy Resources Repository for Beginners</h1>
+            <p style="text-align: center;">Welcome! This site provides a collection of astronomy-related terms and their corresponding Wikipedia pageviews data for the year 2023.<br>
+                 Use the search bar to explore terms, filter by popularity and month, and learn more about fascinating celestial phenomena.</p></div>
+        <div class="search-container">
+            <form id="search-form" action="term_template.html" method="get">
+                <input type="text" id="search-input" name="term" placeholder="Type an astronomy-related term..." list="glossary">
+                <datalist id="glossary"></datalist>
+                <button class="info-link" type="submit">Search</button>
+            </form>
+            
+            <div id="error-container">
+            </div>
+        </div>
+
+        <form id="filter-form" action="" method="get">
+        <div class="form-container">
+            <!-- New input for popularity -->
+            <h2>Filters for Dropdown List of Terms: </h2>
+            <div>
+            <label for="popularity">Popularity:</label>
+            <select id="popularity" name="popularity">
+                <option value="most-popular">Most popular only</option>
+                <option value="least-popular">Least popular only</option>
+                <option value="somewhat-popular">Somewhat popular</option>
+                <option value="does-not-matter">Does not matter</option>
+            </select>
+            </div>
+
+            <div>
+            <!-- New input for monthly views -->
+            <label for="monthly-views">Monthly Views For:</label>
+            <select id="month" name="monthly-views">
+            </select>
+            </div>
+
+            <div id="average-pageviews-container">
+                <div id="average-pageviews"></div>
+            </div>
+            
+            <button class="info-link" type="submit">Filter</button>
+        </div></form>
+
+        <div class="info-link-container">
+            <a href="more-info.html" class="info-link">Learn More About This Project</a>
+        </div>
+
+        <div class="stars"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

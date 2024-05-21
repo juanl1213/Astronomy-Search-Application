@@ -1,0 +1,260 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center;
+
+
+    /*overflow: hidden;*/
+    background-color: rgb(0, 0, 92);
+    color: white;
+    font-family: 'Lato', sans-serif;
+}
+/* Style for the search container */
+.search-container {
+    
+    display: flex;
+    /*justify-content: center;*/
+    flex-direction: column;
+    align-items: center; /* Center vertically on the viewport */
+    text-align: center; 
+    margin-bottom: 0%;
+}
+
+#search-form {
+    z-index: 1;
+    padding-bottom: 1%;
+}
+
+/* Style for the search input */
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    /*outline: none;*/
+}
+
+/* Style for the search button */
+.search-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /*margin-left: 10px;*/
+}
+
+#filter-button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+#average-pageviews {
+    margin-top: 10%;
+}
+
+/* Change button color on hover */
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    text-align: center; /* Center the text horizontally */
+    font-size: 24px;
+     /* Adjust the font size as needed */
+     /* Add some space above the heading */
+}
+
+#loadingText {
+    text-align: center; /* Center the text horizontally */
+    font-size: 20px;
+    margin-top: 0; /* Adjust the font size as needed */
+     /* Add some space above the heading */
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*/* Place the stars below other content */
+}
+
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: #fff; /* White stars */
+    border-radius: 50%;
+    animation: twinkling 2s infinite;
+    z-index: -3; /* Customize animation duration as needed */
+}
+
+/* Keyframes animation for twinkling effect */
+@keyframes twinkling {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+
+
+.loading-container {
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.loading-text {
+    display: inline-block;
+}
+
+.ellipsis {
+    display: inline-block;
+    font-size: 4em;
+    line-height: 1em;
+    margin-bottom: 2px;
+}
+
+.dot {
+    display: inline-block;
+    animation: ellipsis 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.5s; /* Delay for the second dot */
+}
+
+.dot:nth-child(3) {
+    animation-delay: 1s; /* Delay for the third dot */
+}
+
+@keyframes ellipsis {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.5);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.5);
+    }
+}
+
+
+.form-container {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    flex-direction: column; /* Allow wrapping to the next line if needed */
+    /*margin-bottom: 20px; /* Adjust as needed */
+}
+  
+  label {
+    margin-right: 10px; /* Adjust as needed to add space between labels and selects */
+}
+  
+  select {
+    margin-top: 2px;
+    margin-bottom: 5%; /* Adjust as needed to add space between selects */
+}
+
+  
+.form-container > div {
+    z-index: 2;
+    margin-top: 2%;
+}
+
+.form-container > button {
+    margin-top: 5%;
+}
+
+#average-pageviews-container {
+    display: flex;
+    align-items: center; /* Align items vertically in the center */
+}
+
+#average-pageviews {
+    margin-top: 0;
+    margin-left: 5px; /* Adjust the margin as needed */
+}
+
+.info-link-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.info-link {
+    position: relative;
+    z-index: 5;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 5px #0056b3;
+    transition: all 0.3s ease;
+}
+
+.info-link:hover {
+    background-color: #0056b3;
+    box-shadow: 0 3px #004080;
+    transform: translateY(-2px);
+}
+
+.info-link:active {
+    background-color: #003366;
+    box-shadow: 0 2px #00264d;
+    transform: translateY(2px);
+}
+
+
+
+/* Media query for smaller screens */
+@media (max-width: 500px) {
+    #loadingText, h1  {
+        text-align: center;
+        font-size: 18px;
+        margin: 5px 10px;
+        
+         /* Adjust the font size for smaller screens */
+         /* Adjust the margin for smaller screens */
+    }
+
+    #search-input {
+        width: 80%; /* Adjust the width of the input for smaller screens */
+    }
+
+    .search-button {
+        text-align: center;
+        margin-left: 5px; /* Adjust the margin for smaller screens */
+    }
+}
