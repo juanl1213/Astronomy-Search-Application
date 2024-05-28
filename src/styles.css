@@ -240,7 +240,7 @@ h1 {
 
 /* Media query for smaller screens */
 @media (max-width: 500px) {
-    #loadingText, h1  {
+    #loadingText, h1, h2  {
         text-align: center;
         font-size: 18px;
         margin: 5px 10px;
@@ -256,5 +256,9 @@ h1 {
     .search-button {
         text-align: center;
         margin-left: 5px; /* Adjust the margin for smaller screens */
+    }
+
+    .info-link {
+        font-size: 14px;
     }
 }
