@@ -11,14 +11,14 @@
             margin: 0;
             padding: 0;
             color: #fff;
-            background: linear-gradient(to right, #cdcdf0, #a2a2df);
+            background: linear-gradient(to right, rgb(19, 19, 128), rgb(0, 0, 92));
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
         header {
-            background: #babae9;
+            background: rgb(19, 19, 128);
             color: #fff;
             padding: 20px 0;
             width: 100%;
@@ -97,24 +97,29 @@
             <p>This project showcases my passion for astronomy while demonstrating my coding skills. The website features a glossary of astronomy terms with related YouTube videos and pageviews data.</p>
         </section>
         <div class="grid-row">
-            <section id="goals" class="container">
-                <h2 class="title-text">Project Goals</h2>
-                <ul>
-                    <li><strong>Purpose:</strong> To share my interest in astronomy and provide educational resources.</li>
-                    <li><strong>Target Audience:</strong> Amateurs and enthusiasts of astronomy.</li>
-                    <li><strong>Technologies Used:</strong> HTML, CSS, JavaScript, Node.js, Web Scraping, APIs, Caching.</li>
-                </ul>
-            </section>
-            <section id="technologies" class="container">
-                <h2 class="title-text">Key Technologies and Frameworks</h2>
-                <ul>
-                    <li><strong>HTML, CSS, JavaScript:</strong> Core technologies for building the website.</li>
-                    <li><strong>Node.js:</strong> Backend development and server-side scripting.</li>
-                    <li><strong>Web Scraping:</strong> To gather astronomy terms and YouTube video data.</li>
-                    <li><strong>APIs:</strong> Wikipedia API for glossary terms, XTools for pageviews data, YouTube API for videos.</li>
-                    <li><strong>Caching:</strong> Implemented to store API responses locally and reduce redundant requests.</li>
-                </ul>
-            </section>
+            <div class="grid-row">
+                <section id="goals" class="container">
+                    <h2 class="title-text">Project Goals</h2>
+                    <ul>
+                        <li><strong>Purpose:</strong> To share my interest in astronomy and provide educational resources.</li>
+                        <li><strong>Target Audience:</strong> Amateurs and enthusiasts of astronomy.</li>
+                        <li><strong>Technologies Used:</strong> HTML, CSS, JavaScript, Node.js, Web Scraping, APIs, Caching.</li>
+                    </ul>
+                </section>
+                <section id="filtering-description" class="container">
+                    <h2 class="title-text">Filtering Description</h2>
+                    <p>Depending on the month you select, you can also filter the dropdown list of terms
+                        based on their popularity (how often users visit the page for that term). There are four options 
+                        you can choose from:
+                    </p>
+                    <ul>
+                        <li><strong>Most popular only:</strong> Terms with pageviews in the top 75th percentile.</li>
+                        <li><strong>Least popular only:</strong> Terms with pageviews in the bottom 25th percentile.</li>
+                        <li><strong>Somewhat popular:</strong> Terms with pageviews in between the 25th and 75th percentile.</li>
+                        <li><strong>Does not matter:</strong> All terms all displayed.</li>
+                    </ul>
+                </section>
+            </div>
             <section id="milestones" class="container">
                 <h2 class="title-text">Key Milestones and Issues</h2>
                 <h3>Development Challenges</h3>
@@ -130,6 +135,16 @@
                     <li>Current solution involves splitting the deployment between Netlify and Render.</li>
                 </ul>
             </section>
+            <section id="technologies" class="container">
+                <h2 class="title-text">Key Technologies and Frameworks</h2>
+                <ul>
+                    <li><strong>HTML, CSS, JavaScript:</strong> Core technologies for building the website.</li>
+                    <li><strong>Node.js:</strong> Backend development and server-side scripting.</li>
+                    <li><strong>Web Scraping:</strong> To gather astronomy terms and YouTube video data.</li>
+                    <li><strong>APIs:</strong> Wikipedia API for glossary terms, XTools for pageviews data, YouTube API for videos.</li>
+                    <li><strong>Caching:</strong> Implemented to store API responses locally and reduce redundant requests.</li>
+                </ul>
+            </section>
         </div>
         <section id="final-thoughts" class="container">
             <h2 class="title-text">Final Thoughts</h2>
@@ -138,4 +153,3 @@
     </div>
 </body>
 </html>
-
