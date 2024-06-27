@@ -11,20 +11,104 @@
 </head>
 <body>
     <div class="background"></div>
-        <h1 class="term-title">Term Title</h1>
-        <p id="term-content">Term Content</p>
-        <div id="youtube-videos">
-            <!-- Embed YouTube videos here -->
+        <div class="content">
+            <h1 class="term-title">Term Title</h1>
+            <!--<p id="term-content">Term Content</p>-->
+            <div id="youtube-videos">
+                <!-- Embed YouTube videos here -->
+            </div>
+            <h1 id="pageviews-text">Pageviews throughout the year 2023</h1>
+            <div id="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
         </div>
-        <h1 id="pageviews-text">Pageviews throughout the year 2023</h1>
-        <div id="chart-container">
-            <canvas id="chart"></canvas>
-        </div>
-        <div class="stars"></div>
     </div>
 
     <script src="term_template.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select the background div
+            const backgroundDiv = document.querySelector('.background');
+
+            // Set up the scene, camera, and renderer
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            backgroundDiv.appendChild(renderer.domElement);
+
+            // Generate stars
+            const starCount = 5000;
+            const starGeometry = new THREE.BufferGeometry();
+            const starVertices = [];
+            const starSizes = [];
+            const starOpacity = [];
+
+            for (let i = 0; i < starCount; i++) {
+                const x = (Math.random() - 0.5) * 2000;
+                const y = (Math.random() - 0.5) * 2000;
+                const z = (Math.random() - 0.5) * 2000;
+                starVertices.push(x, y, z);
+                starSizes.push(Math.random() * 2 + 1); // Sizes between 1 and 3
+                starOpacity.push(Math.random());
+            }
+
+            starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
+            starGeometry.setAttribute('size', new THREE.Float32BufferAttribute(starSizes, 1));
+            starGeometry.setAttribute('opacity', new THREE.Float32BufferAttribute(starOpacity, 1));
+
+            const starMaterial = new THREE.ShaderMaterial({
+                uniforms: {
+                    time: { value: 1.0 }
+                },
+                vertexShader: `
+                    attribute float size;
+                    attribute float opacity;
+                    varying float vOpacity;
+                    void main() {
+                        vOpacity = opacity;
+                        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+                        gl_PointSize = size;
+                        gl_Position = projectionMatrix * mvPosition;
+                    }
+                `,
+                fragmentShader: `
+                    uniform float time;
+                    varying float vOpacity;
+                    void main() {
+                        float twinkle = abs(sin(time + vOpacity * 10.0));
+                        gl_FragColor = vec4(1.0, 1.0, 1.0, twinkle);
+                    }
+                `,
+                transparent: true
+            });
+
+            const stars = new THREE.Points(starGeometry, starMaterial);
+            scene.add(stars);
+
+            camera.position.z = 1000;
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                starMaterial.uniforms.time.value += 0.01;
+                stars.rotation.x += 0.0005;
+                stars.rotation.y += 0.0005;
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        });
+    </script>
 
 </body>
 </html>
