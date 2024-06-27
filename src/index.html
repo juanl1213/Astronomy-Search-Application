@@ -135,20 +135,7 @@
             }
 
 
-            const textureLoader = new THREE.TextureLoader();
-        // Load Nebula Texture
-        const nebulaTexture = textureLoader.load('nebula_texture.jpg');
-
-        // Create Nebula
-        const nebulaGeometry = new THREE.PlaneGeometry(1000, 1000);
-        const nebulaMaterial = new THREE.MeshBasicMaterial({
-            map: nebulaTexture,
-            transparent: false,
-            opacity: 0.8
-        });
-        const nebula = new THREE.Mesh(nebulaGeometry, nebulaMaterial);
-        nebula.position.set(-500, -500, -1500); // Position the nebula
-        scene.add(nebula);
+        
             // Create Comet Particles
         const cometGeometry = new THREE.BufferGeometry();
         const cometVertices = [];
