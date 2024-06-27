@@ -10,37 +10,20 @@ body, html {
     text-align: center;
 }
 
-.stars {
+.background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /*/* Place the stars below other content */
+    overflow: hidden;
 }
 
-.star {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background-color: #fff; /* White stars */
-    border-radius: 50%;
-    animation: twinkling 2s infinite;
-    z-index: -4; /* Customize animation duration as needed */
-}
-
-
-/* Keyframes animation for twinkling effect */
-@keyframes twinkling {
-    0% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0.5;
-    }
+.content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
 }
 
 #youtube-videos {
@@ -62,7 +45,6 @@ body, html {
 #chart-container {
     position: relative;
     background-color: rgb(0, 0, 66);
-    z-index: 4;
     margin: 20px auto;
     padding: 10px;
     display: flex;
@@ -74,7 +56,7 @@ body, html {
 }
 
 #chart{
-    z-index: 3;
+    z-index: ;
     width: 100%;
     height: auto;
 }
@@ -107,3 +89,4 @@ body, html {
         height: 200px; /* Adjust this height based on your layout */
     }
 }
+
