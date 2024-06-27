@@ -62,20 +62,6 @@ function containsKidsOrChildren(str) {
 // Call the function to fetch and display filtered educational YouTube videos
 fetchAndFilterEducationalYouTubeVideos(term);
 
-function createStars(numStars) {
-    const starsContainer = document.querySelector('.stars');
-
-    // Create stars with random positions
-    for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + 'vw';  //Random horizontal position 
-        star.style.top = Math.random() * 100 + 'vh';  //Random vertical position 
-        starsContainer.appendChild(star);
-    }
-}         
-// Generate 100 stars
-createStars(100);
 
 
 document.addEventListener('DOMContentLoaded', function() {
