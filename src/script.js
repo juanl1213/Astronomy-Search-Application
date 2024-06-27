@@ -194,20 +194,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   }); */
-
-  // Generate stars dynamically for visual effect
-  function createStars(numStars) {
-    const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < numStars; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.top = Math.random() * 100 + 'vh';
-      starsContainer.appendChild(star);
-    }
-  }
-
-  createStars(100); // Generate 100 stars
 });
 
 
