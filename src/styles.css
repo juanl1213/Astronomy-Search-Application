@@ -11,7 +11,7 @@ body, html {
 
 
     /*overflow: hidden;*/
-    background-color: rgb(0, 0, 92);
+    background-color: rgb(0, 0, 0);
     color: white;
     font-family: 'Lato', sans-serif;
 }
@@ -278,6 +278,8 @@ h1 {
 
     p {
         font-size: 13px;
+        padding-left: 3px;
+        padding-right: 3px;
     }
 
     .search-button {
