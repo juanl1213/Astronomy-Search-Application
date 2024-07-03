@@ -59,6 +59,10 @@
         <div class="info-link-container">
             <a href="more-info.html" class="info-link">Learn More About This Project</a>
         </div>
+
+        <div class="info-link-container">
+            <a href="apod.html" class="info-link">Astronomy Picture of the Day</a>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
@@ -135,8 +139,7 @@
             }
 
 
-        
-            // Create Comet Particles
+        // Create Comet Particles
         const cometGeometry = new THREE.BufferGeometry();
         const cometVertices = [];
 
@@ -175,7 +178,8 @@
         animate();
         // Handle window resize
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;                camera.updateProjectionMatrix();
+            camera.aspect = window.innerWidth / window.innerHeight;                
+            camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
             });
         });
