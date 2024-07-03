@@ -252,12 +252,26 @@ h1 {
     transform: translateY(2px);
 }
 
+.apod-container {
+    margin-top: 5%;
+    text-align: center;
+}
+.apod-image {
+    max-height: 60%;
+    max-width: 30%;
+    height: auto;
+}
 
+#apod-explanation {
+    max-width: 50%;
+    text-align: center;
+    margin-left: 25%;
+}
 
 /* Media query for smaller screens */
 @media (max-width: 500px) {
     body {
-        overflow:visible;
+        overflow: visible;
     }
     #loadingText, h1, h2  {
         text-align: center;
@@ -298,4 +312,20 @@ h1 {
         margin-top: 0;
         text-align: center;
     }
+
+    .apod-image {
+        max-width: 80%;
+    }
+
+    #apod-explanation {
+        max-width: 90%;
+        text-align: center;
+        margin-left: 5%;
+    }
+
+    .apod-container {
+        margin-top: 15%;
+        text-align: center;
+    }
 }
+
