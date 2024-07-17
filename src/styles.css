@@ -40,7 +40,7 @@ body, html {
     z-index: 1;
     color: white;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 30px;
 }
 #search-form {
     z-index: 1;
@@ -258,14 +258,43 @@ h1 {
 }
 .apod-image {
     max-height: 60%;
-    max-width: 30%;
+    max-width: 100%;
     height: auto;
+    border-radius: 10px;
+}
+.apod-video {
+    width: 70vw;
+    height: 40vw;
+    max-width: 1280px;
+    max-height: 600px;
 }
 
 #apod-explanation {
     max-width: 50%;
     text-align: center;
     margin-left: 25%;
+}
+
+#frame{
+    max-width: 70%;
+    margin-left: 30%;
+    border: 3px solid #ccc;
+    background: #eee;
+    margin: auto;
+    padding: 15px 10px;
+}
+
+.translate-button {
+    position: left;
+    margin-top: 20px;
+    top: 20px;
+    left: 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 /* Media query for smaller screens */
@@ -327,5 +356,8 @@ h1 {
         margin-top: 15%;
         text-align: center;
     }
-}
 
+    #frame {
+        max-width: 90%;
+    }
+}
