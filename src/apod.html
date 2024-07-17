@@ -9,27 +9,92 @@
 <body>
     <div class="apod-container">
         <h2>Astronomy Picture of the Day</h2>
-        <img id="apod-image" class="apod-image" src="" alt="Astronomy Picture of the Day">
+        <div id="frame"></div>
         <p id="apod-date"></p>
         <p id="apod-title"></p>
         <p id="apod-explanation"></p>
+        <button class="translate-button" onclick="translateContent()">Translate to Spanish</button>
     </div>
 </body>
 <script>
     // Fetch and display the NASA APOD
     const apodApiKey = 'ZK0vwPdaxPLKDf7doa6eU2GQ22Dtk7i4ta2UMexW'; // Replace with your NASA API key
-            const apodUrl = `https://api.nasa.gov/planetary/apod?api_key=${apodApiKey}`;
+    const apodUrl = `https://api.nasa.gov/planetary/apod?api_key=${apodApiKey}`;
 
-            fetch(apodUrl)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('apod-image').src = data.url;
-                    document.getElementById('apod-date').textContent = `Date: ${data.date}`;
-                    document.getElementById('apod-title').textContent = data.title;
-                    document.getElementById('apod-explanation').textContent = data.explanation;
-                })
-                .catch(error => {
-                    console.error('Error fetching the NASA APOD:', error);
+    fetch(apodUrl)
+        .then(response => response.json())
+        .then(data => {
+                /* document.getElementById('apod-image').src = data.url; */
+                document.getElementById('apod-date').textContent = `Date: ${data.date}`;
+                document.getElementById('apod-title').textContent = data.title;
+                document.getElementById('apod-explanation').textContent = data.explanation;
+
+
+                const mediaContainer = document.getElementById('frame');
+                    if (data.media_type === 'image') {
+                        const img = document.createElement('img');
+                        img.id = 'apod-image';
+                        img.className = 'apod-image';
+                        img.src = data.url;
+                        img.alt = 'Astronomy Picture of the Day';
+                        mediaContainer.appendChild(img);
+                    } else if (data.media_type === 'video') {
+                        const iframe = document.createElement('iframe');
+                        iframe.id = 'apod-video';
+                        iframe.className = 'apod-video';
+                        iframe.src = data.url;
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        mediaContainer.appendChild(iframe);
+                    }
+            })
+        .catch(error => {
+                console.error('Error fetching the NASA APOD:', error);
+            });
+                
+
+            async function translateContent() {
+            const elementsToTranslate = [
+                document.getElementById('apod-title'),
+                document.getElementById('apod-date'),
+                document.getElementById('apod-explanation')
+            ];
+
+            try {
+                for (const element of elementsToTranslate) {
+                    const text = element.textContent;
+                    const translatedText = await translateText(text);
+                    element.textContent = translatedText;
+                }
+            } catch (error) {
+                console.error('Translation error:', error);
+            }
+        }
+
+        async function translateText(text) {
+            try {
+                const response = await fetch('https://astronomy-translate-server-main.onrender.com/translate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ text })
                 });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Error response:', errorData);
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                return data.translatedText;
+            } catch (error) {
+                console.error('Network or API error:', error);
+                throw error;
+            }
+        }
+
 </script>
 </html>
