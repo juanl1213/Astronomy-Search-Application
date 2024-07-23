@@ -13,11 +13,17 @@
         <p id="apod-date"></p>
         <p id="apod-title"></p>
         <p id="apod-explanation"></p>
+        <div class="loading-animation" id="loading-animation" style="display: none;">
+            <br>
+            <p>Translating... Please wait</p>
+            <img src="loading.gif" alt="Loading...">
+        </div>
         <button class="translate-button" onclick="translateContent()">Translate to Spanish</button>
     </div>
 </body>
 <script>
-    // Fetch and display the NASA APOD
+    document.addEventListener('DOMContentLoaded', () => {
+        // Fetch and display the NASA APOD
     const apodApiKey = 'ZK0vwPdaxPLKDf7doa6eU2GQ22Dtk7i4ta2UMexW'; // Replace with your NASA API key
     const apodUrl = `https://api.nasa.gov/planetary/apod?api_key=${apodApiKey}`;
 
@@ -48,29 +54,50 @@
                         iframe.allowFullscreen = true;
                         mediaContainer.appendChild(iframe);
                     }
+
+                     // Store original text
+                    document.getElementById('apod-title').setAttribute('data-original', document.getElementById('apod-title').textContent);
+                    document.getElementById('apod-date').setAttribute('data-original', document.getElementById('apod-date').textContent);
+                    document.getElementById('apod-explanation').setAttribute('data-original', document.getElementById('apod-explanation').textContent);
             })
         .catch(error => {
                 console.error('Error fetching the NASA APOD:', error);
             });
+        })
+
                 
 
             async function translateContent() {
-            const elementsToTranslate = [
-                document.getElementById('apod-title'),
-                document.getElementById('apod-date'),
-                document.getElementById('apod-explanation')
-            ];
+                const loadingAnimation = document.getElementById('loading-animation');
+                loadingAnimation.style.display = 'block';
 
-            try {
-                for (const element of elementsToTranslate) {
-                    const text = element.textContent;
-                    const translatedText = await translateText(text);
-                    element.textContent = translatedText;
+                const translateButton = document.querySelector('.translate-button');
+                const elementsToTranslate = [
+                    document.getElementById('apod-title'),
+                    document.getElementById('apod-date'),
+                    document.getElementById('apod-explanation')
+                ];
+
+                if (translateButton.textContent === 'Translate to Spanish') {
+                    try {
+                        for (const element of elementsToTranslate) {
+                            const text = element.textContent;
+                            const translatedText = await translateText(text);
+                            element.textContent = translatedText;
+                        }
+                        translateButton.textContent = 'Traducir a Ingles'
+                    } catch (error) {
+                        console.error('Translation error:', error);
+                    }
+                } else {
+                    // Revert to original text
+                    for (const element of elementsToTranslate) {
+                        element.textContent = element.getAttribute('data-original');
+                    }
+                    translateButton.textContent = 'Translate to Spanish';
                 }
-            } catch (error) {
-                console.error('Translation error:', error);
+                loadingAnimation.style.display = 'none';
             }
-        }
 
         async function translateText(text) {
             try {
